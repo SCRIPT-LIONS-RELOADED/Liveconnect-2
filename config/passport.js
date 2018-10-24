@@ -19,20 +19,20 @@ module.exports = function (passport) {
   // Signup
   passport.use('local-signup', new LocalStrategy({
     // by default, local strategy uses username and password, we will override with email
-    usernameField: 'email',
+    usernameField: 'username',
     passwordField: 'password',
     passReqToCallback : true // allows us to pass back the entire request to the callback
   },
-  function (req, email, password, done) {
-    User.findOne({'local.email': email}, function (err, user) {
+  function (req, username, password, done) {
+    User.findOne({'local.username': username}, function (err, user) {
       if (err) {
         return done(err);
       }
       if (user) {
-        return done(null, false, req.flash('signupMessage', 'the email is already taken'));
+        return done(null, false, req.flash('signupMessage', 'the username is already taken/el nombre de usuario ya a sido seleccionado'));
       } else {
         var newUser = new User();
-        newUser.local.email = email;
+        newUser.local.username = username;
         newUser.local.password = newUser.generateHash(password);
         newUser.save(function (err) {
           if (err) { throw err; }
@@ -46,18 +46,18 @@ module.exports = function (passport) {
   // we are using named strategies since we have one for login and one for signup
   // by default, if there was no name, it would just be called 'local
   passport.use('local-login', new LocalStrategy({
-    usernameField: 'email',
+    usernameField: 'username',
     passwordField: 'password',
     passReqToCallback: true
   },
-  function (req, email, password, done) {
-    User.findOne({'local.email': email}, function (err, user) {
+  function (req, username, password, done) {
+    User.findOne({'local.username': username}, function (err, user) {
       if (err) { return done(err); }
       if (!user) {
-        return done(null, false, req.flash('loginMessage', 'No User found'))
+        return done(null, false, req.flash('loginMessage', 'No User found/usuario no existente'))
       }
       if (!user.validPassword(password)) {
-        return done(null, false, req.flash('loginMessage', 'Wrong. password'));
+        return done(null, false, req.flash('loginMessage', 'Wrong. password/contraseña incorrecta'));
       }
       return done(null, user);
     });
