@@ -13,6 +13,11 @@
   </style>
 </head>
 <body>
+  <div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'ar,de,el,en,es,fr,haw,hr,it,iw,la,pt,ru,sv,tr,zh-TW', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
   <div style="text-align:Right;" class="container">
     <a href="/logout" class="btn btn-light btn-large">
     Logout
@@ -23,10 +28,13 @@
    <div style="background-color:#1E90FF">
     <div style="background-color:#606060" class="ui container">
 
-    <h1 style="text-align:center;" class="ui header">LiveConnect</h1>
+    <h1 style="text-align:center;color:rgb(18, 185, 165);font-size:32 px" class="ui header">LiveConnect</h1>
 <body>
   <div class="ui container">
-    <h1 class="ui header">LiveConnect</h1>
+    <h1 class="ui header"style="color:rgb(244, 249, 249);font-size:25px">Welcome to a place where you can share emotions, business and knowledge worldwide.</h1>
+
+
+
     <hr>
     <div class="ui two column stackable grid">
       <div class="ui ten wide column">
@@ -60,7 +68,7 @@
       <!-- Local Camera -->
       <div class="ui six wide column">
         <img  id="local-image" class="ui large image" src="images/image.png">
-        <video id="local-video" class="ui large image"  autoplay></video>
+        <video  id="local-video" class="ui large image" width="100" heigth="100"  autoplay></video>
         <h4 class="ui center aligned header" style="margin:0;">
           Local Camera
         </h4>
@@ -87,7 +95,7 @@
 
   <!-- TEMPLATES -->
   <!-- Remote Video Template -->
-  <script id="remote-video-template" type="text/x-handlebars-template">
+  <script id="remote-video-template" width="100" heigth="100" type="text/x-handlebars-template">
     <div id="{{ id }}" class="four wide column">
       <img class="ui centered medium image" src="images/image.png">
     </div>
